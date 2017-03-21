@@ -1,0 +1,21 @@
+/*#gif-appear {
+	float: left; 
+}*/
+
+/*.outer {
+	width: 80%;
+}*/
+
+.left {
+	float: left;
+	margin: 5px; 
+}
+
+/*body {
+	width: 95%;
+}*/
+
+.outer {
+	margin: 10px;
+	margin-left: 20px;
+}
