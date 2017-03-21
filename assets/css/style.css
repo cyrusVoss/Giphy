@@ -19,3 +19,11 @@
 	margin: 10px;
 	margin-left: 20px;
 }
+
+.gifShow {
+	margin: 5px;
+}
+
+body {
+	background-image: url(images/wood.jpg)
+}

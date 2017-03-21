@@ -1,4 +1,4 @@
-var theThing = ["Godfather", "Godfather II", "Casino Movie", "Scarface", "Warriors", "Goodfellas", "Blow", "Terminator", "X-Men", "Carlito's Way"];
+var theThing = ["Godfather", "Godfather II", "Casino Movie", "Scarface", "Warriors Movie", "Goodfellas", "Carlito's Way", "Wolverine", "Lakers", "Redskins", "NBA Flops", "Cowboys Suck"];
 
 function renderButton(){
     for (var j = 0; j < theThing.length; j++){
@@ -56,23 +56,54 @@ function renderButton(){
 
           	gifDiv.attr("class", "left");
 
-            // Creating a paragraph tag with the result item's rating
             var p = $("<p>").text("Rating: " + results[i].rating);
 
             // Creating and storing an image tag
             var gifImage = $("<img>");
-            // Setting the src attribute of the image to a property pulled off the result item
-            gifImage.attr("src", results[i].images.fixed_height.url);
+            
+            gifImage.attr("class", "gif"); 
+            gifImage.attr("data-state", "still");
+            gifImage.attr("data-animate", results[i].images.fixed_height.url);
+            gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+            gifImage.attr("src", results[i].images.fixed_height_still.url);
 
             gifDiv.append(p);
             gifDiv.append(gifImage);
-            // p.append(animalImage); 
 
-            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
             $("#gifs-appear").prepend(gifDiv);
           }
         })
 };
-$(document).on("click", ".gifShow", gifShowInfo);
 
-      renderButton();
+
+function gifClick(){
+      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+      var state = $(this).attr("data-state");
+      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      // Then, set the image's data-state to animate
+      // Else set src to the data-still value
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+ };
+	// $(".gif").on("click", function() {
+	// 	var state = $(this).attr("data-state");
+
+	// 	if (state === "still") {
+	// 		$(this).attr("src", $(this).attr("data-animate"));
+	// 		$(this).attr("data-state", "animate");
+ //      // } else {
+ //      //   	$(this).attr("src", $(this).attr("data-still"));
+ //      //   	$(this).attr("data-state", "still");
+ //      // }
+	// });
+
+	$(document).on("click", ".gif", gifClick); 
+
+	$(document).on("click", ".gifShow", gifShowInfo);
+
+    renderButton();
