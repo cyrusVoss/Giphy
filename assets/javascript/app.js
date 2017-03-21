@@ -56,7 +56,9 @@ function renderButton(){
 
           	gifDiv.attr("class", "left");
 
-            var p = $("<p>").text("Rating: " + results[i].rating);
+          	var rating = (results[i].rating).toUpperCase();
+
+            var p = $("<p>").text("Rating: " + rating);
 
             // Creating and storing an image tag
             var gifImage = $("<img>");
